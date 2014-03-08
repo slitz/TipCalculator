@@ -92,7 +92,7 @@ namespace TipCalculator
             this.tipCalculatorTabControl.Name = "tipCalculatorTabControl";
             this.tipCalculatorTabControl.SelectedIndex = 0;
             this.tipCalculatorTabControl.Size = new System.Drawing.Size(481, 437);
-            this.tipCalculatorTabControl.TabIndex = 20;
+            this.tipCalculatorTabControl.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -133,7 +133,7 @@ namespace TipCalculator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(408, 250);
+            this.label1.Location = new System.Drawing.Point(406, 250);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 18);
             this.label1.TabIndex = 42;
@@ -142,7 +142,7 @@ namespace TipCalculator
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(276, 352);
+            this.label27.Location = new System.Drawing.Point(274, 352);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(16, 18);
             this.label27.TabIndex = 41;
@@ -151,7 +151,7 @@ namespace TipCalculator
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(276, 317);
+            this.label13.Location = new System.Drawing.Point(274, 317);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(16, 18);
             this.label13.TabIndex = 40;
@@ -160,7 +160,7 @@ namespace TipCalculator
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(276, 214);
+            this.label12.Location = new System.Drawing.Point(274, 214);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(16, 18);
             this.label12.TabIndex = 39;
@@ -169,7 +169,7 @@ namespace TipCalculator
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(276, 179);
+            this.label11.Location = new System.Drawing.Point(274, 179);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(16, 18);
             this.label11.TabIndex = 38;
@@ -178,7 +178,7 @@ namespace TipCalculator
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(276, 282);
+            this.label10.Location = new System.Drawing.Point(274, 282);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(16, 18);
             this.label10.TabIndex = 37;
@@ -187,7 +187,7 @@ namespace TipCalculator
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(276, 144);
+            this.label9.Location = new System.Drawing.Point(274, 144);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(16, 18);
             this.label9.TabIndex = 36;
@@ -196,7 +196,7 @@ namespace TipCalculator
             // totalLabel
             // 
             this.totalLabel.AllowDrop = true;
-            this.totalLabel.Location = new System.Drawing.Point(299, 351);
+            this.totalLabel.Location = new System.Drawing.Point(297, 351);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(132, 26);
             this.totalLabel.TabIndex = 35;
@@ -206,7 +206,7 @@ namespace TipCalculator
             // perPersonTipLabel
             // 
             this.perPersonTipLabel.AllowDrop = true;
-            this.perPersonTipLabel.Location = new System.Drawing.Point(299, 316);
+            this.perPersonTipLabel.Location = new System.Drawing.Point(297, 316);
             this.perPersonTipLabel.Name = "perPersonTipLabel";
             this.perPersonTipLabel.Size = new System.Drawing.Size(132, 26);
             this.perPersonTipLabel.TabIndex = 34;
@@ -216,7 +216,7 @@ namespace TipCalculator
             // totalTipLabel
             // 
             this.totalTipLabel.AllowDrop = true;
-            this.totalTipLabel.Location = new System.Drawing.Point(299, 281);
+            this.totalTipLabel.Location = new System.Drawing.Point(297, 281);
             this.totalTipLabel.Name = "totalTipLabel";
             this.totalTipLabel.Size = new System.Drawing.Size(132, 26);
             this.totalTipLabel.TabIndex = 33;
@@ -226,7 +226,7 @@ namespace TipCalculator
             // tipRateLabel
             // 
             this.tipRateLabel.AllowDrop = true;
-            this.tipRateLabel.Location = new System.Drawing.Point(299, 246);
+            this.tipRateLabel.Location = new System.Drawing.Point(297, 246);
             this.tipRateLabel.Name = "tipRateLabel";
             this.tipRateLabel.Size = new System.Drawing.Size(113, 26);
             this.tipRateLabel.TabIndex = 32;
@@ -236,7 +236,7 @@ namespace TipCalculator
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(41, 351);
+            this.label18.Location = new System.Drawing.Point(39, 351);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(127, 18);
@@ -246,7 +246,7 @@ namespace TipCalculator
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(41, 316);
+            this.label19.Location = new System.Drawing.Point(39, 316);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(103, 18);
@@ -256,7 +256,7 @@ namespace TipCalculator
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(41, 281);
+            this.label20.Location = new System.Drawing.Point(39, 281);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(66, 18);
@@ -266,7 +266,7 @@ namespace TipCalculator
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(41, 246);
+            this.label21.Location = new System.Drawing.Point(39, 246);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(63, 18);
@@ -276,7 +276,7 @@ namespace TipCalculator
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(41, 211);
+            this.label22.Location = new System.Drawing.Point(39, 211);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(34, 18);
@@ -286,7 +286,7 @@ namespace TipCalculator
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(41, 176);
+            this.label23.Location = new System.Drawing.Point(39, 176);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(99, 18);
@@ -296,7 +296,7 @@ namespace TipCalculator
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(41, 141);
+            this.label24.Location = new System.Drawing.Point(39, 141);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(61, 18);
@@ -306,7 +306,7 @@ namespace TipCalculator
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(41, 82);
+            this.label25.Location = new System.Drawing.Point(39, 82);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(121, 18);
@@ -316,7 +316,7 @@ namespace TipCalculator
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(41, 42);
+            this.label26.Location = new System.Drawing.Point(39, 42);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(128, 18);
@@ -326,21 +326,21 @@ namespace TipCalculator
             // qualityTrackBar
             // 
             this.qualityTrackBar.LargeChange = 1;
-            this.qualityTrackBar.Location = new System.Drawing.Point(187, 82);
+            this.qualityTrackBar.Location = new System.Drawing.Point(185, 82);
             this.qualityTrackBar.Margin = new System.Windows.Forms.Padding(4);
             this.qualityTrackBar.Name = "qualityTrackBar";
             this.qualityTrackBar.Size = new System.Drawing.Size(244, 45);
-            this.qualityTrackBar.TabIndex = 22;
+            this.qualityTrackBar.TabIndex = 2;
             this.qualityTrackBar.Value = 6;
             this.qualityTrackBar.Scroll += new System.EventHandler(this.qualityTrackBar_ValueChanged);
             // 
             // taxTextBox
             // 
-            this.taxTextBox.Location = new System.Drawing.Point(299, 211);
+            this.taxTextBox.Location = new System.Drawing.Point(297, 211);
             this.taxTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.taxTextBox.Name = "taxTextBox";
             this.taxTextBox.Size = new System.Drawing.Size(132, 26);
-            this.taxTextBox.TabIndex = 21;
+            this.taxTextBox.TabIndex = 5;
             this.taxTextBox.Text = "0.00";
             this.taxTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.taxTextBox.TextChanged += new System.EventHandler(this.taxTextBox_TextChanged);
@@ -349,11 +349,11 @@ namespace TipCalculator
             // 
             // billDeductionsTextBox
             // 
-            this.billDeductionsTextBox.Location = new System.Drawing.Point(299, 176);
+            this.billDeductionsTextBox.Location = new System.Drawing.Point(297, 176);
             this.billDeductionsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.billDeductionsTextBox.Name = "billDeductionsTextBox";
             this.billDeductionsTextBox.Size = new System.Drawing.Size(132, 26);
-            this.billDeductionsTextBox.TabIndex = 20;
+            this.billDeductionsTextBox.TabIndex = 4;
             this.billDeductionsTextBox.Text = "0.00";
             this.billDeductionsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.billDeductionsTextBox.TextChanged += new System.EventHandler(this.billDeductionsTextBox_TextChanged);
@@ -362,11 +362,11 @@ namespace TipCalculator
             // 
             // billTotalTextBox
             // 
-            this.billTotalTextBox.Location = new System.Drawing.Point(299, 141);
+            this.billTotalTextBox.Location = new System.Drawing.Point(297, 141);
             this.billTotalTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.billTotalTextBox.Name = "billTotalTextBox";
             this.billTotalTextBox.Size = new System.Drawing.Size(132, 26);
-            this.billTotalTextBox.TabIndex = 19;
+            this.billTotalTextBox.TabIndex = 3;
             this.billTotalTextBox.Text = "0.00";
             this.billTotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.billTotalTextBox.TextChanged += new System.EventHandler(this.billTotalTextBox_TextChanged);
@@ -375,12 +375,12 @@ namespace TipCalculator
             // 
             // guestsTextBox
             // 
-            this.guestsTextBox.Location = new System.Drawing.Point(362, 42);
+            this.guestsTextBox.Location = new System.Drawing.Point(360, 42);
             this.guestsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.guestsTextBox.MaxLength = 2;
             this.guestsTextBox.Name = "guestsTextBox";
             this.guestsTextBox.Size = new System.Drawing.Size(69, 26);
-            this.guestsTextBox.TabIndex = 18;
+            this.guestsTextBox.TabIndex = 1;
             this.guestsTextBox.Text = "1";
             this.guestsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.guestsTextBox.TextChanged += new System.EventHandler(this.guestsTextBox_TextChanged);
@@ -436,6 +436,7 @@ namespace TipCalculator
             this.guestOneTextBox.Name = "guestOneTextBox";
             this.guestOneTextBox.Size = new System.Drawing.Size(102, 26);
             this.guestOneTextBox.TabIndex = 20;
+            this.guestOneTextBox.Text = "Guest 1";
             // 
             // tabPage3
             // 
@@ -471,8 +472,6 @@ namespace TipCalculator
             // includeTaxCheckBox
             // 
             this.includeTaxCheckBox.AutoSize = true;
-            this.includeTaxCheckBox.Checked = true;
-            this.includeTaxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.includeTaxCheckBox.Location = new System.Drawing.Point(161, 310);
             this.includeTaxCheckBox.Name = "includeTaxCheckBox";
             this.includeTaxCheckBox.Size = new System.Drawing.Size(105, 22);

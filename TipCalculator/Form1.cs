@@ -17,9 +17,7 @@ namespace TipCalculator
         TrackBar[] trackBarArray;
         Label[] guestLabelArray;
         double guestCount;
-        double trackBarValue;
         string errorMsg = "Invalid input.";
-        Regex regex = new Regex(@"[0-9\.]");
 
         public tipSplittingCalculatorForm()
         {
@@ -64,27 +62,8 @@ namespace TipCalculator
                     guestTwoTextBox.Name = "guestTwoTextBox";
                     guestTwoTextBox.Size = new Size(100, 26);
                     guestTwoTextBox.TabIndex = 33 + 1;
+                    guestTwoTextBox.Text = "Guest" + (x + 1);
                     tipCalculatorTabControl.TabPages[1].Controls.Add(guestTwoTextBox);
-
-                    TrackBar guestTrackBar = new TrackBar();
-                    guestTrackBar.Location = new Point(151, (spacing * (x + 1)));
-                    guestTrackBar.Margin = new Padding(4);
-                    guestTrackBar.Value = Convert.ToInt32(((double)1 / guestCount) * 10);
-                    guestTrackBar.Name = "trackBar1";
-                    guestTrackBar.Size = new Size(175, 45);
-                    guestTrackBar.TabIndex = 34;
-                    tipCalculatorTabControl.TabPages[1].Controls.Add(guestTrackBar);
-                    guestTrackBar.ValueChanged += OnTrackBarValueChanged;
-                    trackBarArray[x] = guestTrackBar;
-
-                    Label dollarLabel = new Label();
-                    dollarLabel.AutoSize = true;
-                    dollarLabel.Location = new Point(326, (spacing * (x + 1)));
-                    dollarLabel.Name = "dollarLabel";
-                    dollarLabel.Size = new Size(16, 18);
-                    dollarLabel.TabIndex = 37;
-                    dollarLabel.Text = "$";
-                    tipCalculatorTabControl.TabPages[1].Controls.Add(dollarLabel);
 
                     Label guestLabel = new Label();
                     guestLabel.AllowDrop = true;
@@ -97,8 +76,33 @@ namespace TipCalculator
                     guestLabel.TextAlign = ContentAlignment.MiddleRight;
                     tipCalculatorTabControl.TabPages[1].Controls.Add(guestLabel);
                     guestLabelArray[x] = guestLabel;
+
+                    TrackBar guestTrackBar = new TrackBar();
+                    guestTrackBar.Location = new Point(151, (spacing * (x + 1)));
+                    guestTrackBar.Margin = new Padding(4);  
+                    guestTrackBar.Value = 10;
+                    guestTrackBar.Name = "trackBar" + x;
+                    guestTrackBar.Size = new Size(175, 45);
+                    guestTrackBar.TabIndex = 34;
+                    guestTrackBar.Tag = guestLabel;
+                    tipCalculatorTabControl.TabPages[1].Controls.Add(guestTrackBar);
+                    guestTrackBar.ValueChanged += OnTrackBarValueChanged;
+                    trackBarArray[x] = guestTrackBar;
+
+                    Label dollarLabel = new Label();
+                    dollarLabel.AutoSize = true;
+                    dollarLabel.Location = new Point(326, (spacing * (x + 1)));
+                    dollarLabel.Name = "dollarLabel";
+                    dollarLabel.Size = new Size(16, 18);
+                    dollarLabel.TabIndex = 37;
+                    dollarLabel.Text = "$";
+                    tipCalculatorTabControl.TabPages[1].Controls.Add(dollarLabel);
                 }
             }
+
+            tipRateLabel.Text = CalculateTipRate();
+
+            perPersonTipLabel.Text = CalculatePerPersonTip().ToString();
 
             UpdateTotal();
         }
@@ -115,19 +119,36 @@ namespace TipCalculator
             {
                 e.Handled = true;
             }
+
+            // error if user tries to enter a negative
+            if (e.KeyChar == '-')
+            {
+                errorProvider1.SetError(billTotalTextBox, "Bill total cannot be a negative number.");
+                errorLabel.Text = errorMsg;
+            }
         }
 
         private void billTotalTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateTotal();
+            if (!string.IsNullOrEmpty(billTotalTextBox.Text))
+            {
+                UpdateTotal();
+            }
         }
 
         private void billTotalTextBox_Leave(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
+            errorLabel.Text = string.Empty;
+
             if (!string.IsNullOrEmpty(billTotalTextBox.Text))
             {
                 decimal num = Decimal.Parse(billTotalTextBox.Text);
                 billTotalTextBox.Text = num.ToString("F2");
+            }
+            else
+            {
+                billTotalTextBox.Text = "0.00";
             }
         }
 
@@ -143,19 +164,49 @@ namespace TipCalculator
             {
                 e.Handled = true;
             }
+
+            // error if user tries to enter a negative
+            if (e.KeyChar == '-')
+            {
+                errorProvider1.SetError(billDeductionsTextBox, "Bill deductions cannot be a negative number.");
+                errorLabel.Text = errorMsg;
+            }
         }
 
         private void billDeductionsTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateTotal();
+            if (!string.IsNullOrEmpty(billDeductionsTextBox.Text))
+            {
+                if (Decimal.Parse(billDeductionsTextBox.Text) > Decimal.Parse(billTotalTextBox.Text))
+                {
+                    errorProvider1.SetError(billDeductionsTextBox, "Bill deductions cannot exceed bill total.");
+                    errorLabel.Text = errorMsg;
+                }
+                else
+                {
+                    errorProvider1.Clear();
+                    errorLabel.Text = string.Empty;
+                    UpdateTotal();
+                }
+            }
         }
 
         private void billDeductionsTextBox_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(billDeductionsTextBox.Text))
+            if (errorProvider1.GetError(billDeductionsTextBox) != "")
+            {
+                billDeductionsTextBox.Text = "0.00";
+                errorProvider1.Clear();
+                errorLabel.Text = string.Empty;
+            }
+            else if (!string.IsNullOrEmpty(billDeductionsTextBox.Text))
             {
                 decimal num = Decimal.Parse(billDeductionsTextBox.Text);
                 billDeductionsTextBox.Text = num.ToString("F2");
+            }
+            else
+            {
+                billDeductionsTextBox.Text = "0.00";
             }
         }
 
@@ -171,19 +222,50 @@ namespace TipCalculator
             {
                 e.Handled = true;
             }
+
+            // error if user tries to enter a negative
+            if (e.KeyChar == '-')
+            {
+                errorProvider1.SetError(taxTextBox, "Tax amount cannot be a negative number.");
+                errorLabel.Text = errorMsg;
+            }
         }
 
         private void taxTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateTotal();
+            if (!string.IsNullOrEmpty(taxTextBox.Text) && !string.IsNullOrEmpty(taxTextBox.Text))
+            {
+                if (Decimal.Parse(taxTextBox.Text) > Decimal.Parse(billTotalTextBox.Text))
+                {
+                    errorProvider1.SetError(taxTextBox, "Tax amount cannot exceed bill total.");
+                    errorLabel.Text = errorMsg;
+                }
+                else
+                {
+                    errorProvider1.Clear();
+                    errorLabel.Text = string.Empty;
+                    UpdateTotal();
+                }
+            }
         }
 
         private void taxTextBox_Leave(object sender, EventArgs e)
         {
+            if (errorProvider1.GetError(taxTextBox) != "")
+            {
+                taxTextBox.Text = "0.00";
+                errorProvider1.Clear();
+                errorLabel.Text = string.Empty;
+            }
+
             if (!string.IsNullOrEmpty(taxTextBox.Text))
             {
                 decimal num = Decimal.Parse(taxTextBox.Text);
                 taxTextBox.Text = num.ToString("F2");
+            }
+            else
+            {
+                taxTextBox.Text = "0.00";
             }
         }
 
