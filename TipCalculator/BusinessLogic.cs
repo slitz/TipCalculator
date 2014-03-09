@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TipCalculator
 {
-    public partial class tipSplittingCalculatorForm : Form
+    public partial class TipSplittingCalculatorForm : Form
     {
         decimal billTotal;
         decimal billDeductions;
@@ -20,51 +20,13 @@ namespace TipCalculator
         decimal total;
 
         /// <summary>
-        /// Performs final total calculations and updates total label.
-        /// </summary>
-        public void UpdateTotal()
-        {
-            if (!string.IsNullOrEmpty(billTotalTextBox.Text) && (!string.IsNullOrEmpty(billDeductionsTextBox.Text) && !string.IsNullOrEmpty(taxTextBox.Text)) && !string.IsNullOrEmpty(guestsTextBox.Text))
-            {
-                subtotal = CalculateSubTotal();
-
-                totalTip = CalculateTotalTip();
-
-                totalTipLabel.Text = (subtotal * (Decimal.Parse(tipRateLabel.Text)) / 100).ToString("F2");
-
-                totalTip = Decimal.Parse(totalTipLabel.Text);
-
-                total = subtotal + totalTip;
-
-                totalLabel.Text = total.ToString();
-
-                // Get all the controls on the Tip Tailoriong screen and update labels for each guest with an even tip amount
-                if (perPersonTipLabel.Text != "Tailored")
-                {
-                    perPersonTipLabel.Text = (Decimal.Parse(totalTipLabel.Text) / Decimal.Parse(guestsTextBox.Text)).ToString("F2");
-
-                    foreach (Control c in tipCalculatorTabControl.TabPages[1].Controls)
-                    {
-                        if (c.GetType() == typeof(Label))
-                        {
-                            if (c.Name.StartsWith("guest"))
-                            {
-                                c.Text = CalculatePerPersonTip().ToString("F2");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Determines subtotal based on state of Include Tax and Include Deducations checkboxes.
+        /// Determines subtotal for the tip calculation based on state of Include Tax and Include Deducations checkboxes.
         /// </summary>
         /// <param name="total">Value from Bill Total text box.</param>
         /// <param name="deductions">Value from Deductions text box.</param>
         /// <param name="tax">Value from Tax text box.</param>
-        /// <returns>Subtotal value for use in final total.</returns>
-        private decimal CalculateSubTotal()
+        /// <returns>Subtotal value for use in tip calculation.</returns>
+        private decimal CalculateSubTotalForTip()
         {
             billTotal = Decimal.Parse(billTotalTextBox.Text);
             billDeductions = Decimal.Parse(billDeductionsTextBox.Text);
@@ -94,33 +56,28 @@ namespace TipCalculator
             }
         }
 
-        /// <summary>
-        /// Determines the Tip Rate based on the Minimun Tip and Maximum Tip textbox values and the Quality of Service slider value.
-        /// </summary>
-        /// <returns>Tip Rate</returns>
-        public string CalculateTipRate()
-        {
-            minTipRate = Decimal.Parse(minTipTextBox.Text);
-            maxTipRate = Decimal.Parse(maxTipTextBox.Text);
-            serviceRate = Decimal.Parse(qualityTrackBar.Value.ToString());
-
-            return (((maxTipRate - minTipRate) * (serviceRate / 10)) + minTipRate).ToString("F1");
-        }
-
         public decimal CalculateTotalTip()
         {
-            subtotal = CalculateSubTotal();
+            subtotal = CalculateSubTotalForTip();
             return (subtotal * (Decimal.Parse(CalculateTipRate())) / 100);
         }
 
-        public decimal CalculatePerPersonTip()
+        public void UpdateGuestsTipAmount()
         {
-            totalTip = CalculateTotalTip();
-
-            return totalTip / (decimal)guestCount;
+            // Get all the controls on the Tip Tailoriong screen and update labels for each guest with an even tip amount
+            foreach (Control c in tipCalculatorTabControl.TabPages[1].Controls)
+            {
+                if (c.GetType() == typeof(Label))
+                {
+                    if (c.Name.StartsWith("guest"))
+                    {
+                        c.Text = CalculatePerPersonTip().ToString("F2");
+                    }
+                }
+            }
         }
 
-        public void CalculateTailoredTotalTip()
+        public decimal CalculateTailoredTotalTip()
         {
             decimal tailoredTipTotal = 0;
 
@@ -136,30 +93,71 @@ namespace TipCalculator
                 }
             }
 
-            totalTipLabel.Text = tailoredTipTotal.ToString();
+            return tailoredTipTotal;
         }
 
-        public string CalculateTailoredTipRate()
+        /// <summary>
+        /// Determines the Tip Rate based on the Minimun Tip and Maximum Tip textbox values and the Quality of Service slider value.
+        /// </summary>
+        /// <returns>Tip Rate</returns>
+        public string CalculateTipRate()
         {
-            return ((Decimal.Parse(totalTipLabel.Text) / CalculateSubTotal()) * 100).ToString("F1");
+            minTipRate = Decimal.Parse(minTipTextBox.Text);
+            maxTipRate = Decimal.Parse(maxTipTextBox.Text);
+            serviceRate = Decimal.Parse(qualityTrackBar.Value.ToString());
+
+            return (((maxTipRate - minTipRate) * (serviceRate / 10)) + minTipRate).ToString();
         }
 
-        public void  OnTrackBarValueChanged(object sender, EventArgs e)
+        public decimal CalculatePerPersonTip()
         {
-            var trackBar = (TrackBar)sender;
-            var label = (Label)trackBar.Tag;
+            totalTip = CalculateTotalTip();
 
-            perPersonTipLabel.Text = "Tailored";
+            return totalTip / (decimal)guestCount;
+        }
 
-            decimal perPersonTip = CalculatePerPersonTip();
+        public decimal CalculateTailoredTipRate()
+        {
+            return (Decimal.Parse(totalTipLabel.Text) / CalculateSubTotalForTip()) * 100;
+        }
 
-            label.Text = (((decimal)trackBar.Value / 10) * perPersonTip).ToString("F2");
+        private decimal CalculateSubTotalForBill()
+        {
+            billTotal = Decimal.Parse(billTotalTextBox.Text);
+            billDeductions = Decimal.Parse(billDeductionsTextBox.Text);
+            tax = Decimal.Parse(taxTextBox.Text);
 
-            CalculateTailoredTotalTip();
+            return billTotal - billDeductions + tax;
+        }
 
-            tipRateLabel.Text = CalculateTailoredTipRate();
+        /// <summary>
+        /// Performs final total calculations and updates total label.
+        /// </summary>
+        public void UpdateTotal()
+        {
+            if (!string.IsNullOrEmpty(billTotalTextBox.Text) && (!string.IsNullOrEmpty(billDeductionsTextBox.Text) && !string.IsNullOrEmpty(taxTextBox.Text)) && !string.IsNullOrEmpty(guestsTextBox.Text))
+            {
+                if (perPersonTipLabel.Text != "Tailored")
+                {
+                    totalTip = CalculateTotalTip();
 
-            UpdateTotal();
+                    totalTipLabel.Text = totalTip.ToString("F2");
+
+                    perPersonTipLabel.Text = (Decimal.Parse(totalTipLabel.Text) / Decimal.Parse(guestsTextBox.Text)).ToString("F2");
+
+                    UpdateGuestsTipAmount();
+                }
+                else
+                {
+                    totalTip = CalculateTailoredTotalTip();
+                }
+
+                subtotal = CalculateSubTotalForBill();
+
+                total = subtotal + totalTip;
+
+                totalLabel.Text = total.ToString("F2");
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TipCalculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new tipSplittingCalculatorForm());
+            Application.Run(new TipSplittingCalculatorForm());
         }
     }
 }
