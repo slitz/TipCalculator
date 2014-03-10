@@ -56,15 +56,21 @@ namespace TipCalculator
             }
         }
 
+        /// <summary>
+        /// Calculates the total tip dollar value using the tip rate
+        /// </summary>
+        /// <returns></returns>
         public decimal CalculateTotalTip()
         {
             subtotal = CalculateSubTotalForTip();
-            return (subtotal * (Decimal.Parse(CalculateTipRate())) / 100);
+            return (subtotal * (CalculateTipRate()) / 100);
         }
 
+        /// <summary>
+        /// Updates all the guests labels on the Tip Tailoring tab with an even tip amount
+        /// </summary>
         public void UpdateGuestsTipAmount()
         {
-            // Get all the controls on the Tip Tailoriong screen and update labels for each guest with an even tip amount
             foreach (Control c in tipCalculatorTabControl.TabPages[1].Controls)
             {
                 if (c.GetType() == typeof(Label))
@@ -77,11 +83,14 @@ namespace TipCalculator
             }
         }
 
+        /// <summary>
+        /// Calculates total tip dollar value when tip is tailored
+        /// </summary>
+        /// <returns>tip total</returns>
         public decimal CalculateTailoredTotalTip()
         {
             decimal tailoredTipTotal = 0;
 
-            // Get all the controls on the Tip Tailoriong screen and update labels for each guest with an even tip amount
             foreach (Control c in tipCalculatorTabControl.TabPages[1].Controls)
             {
                 if (c.GetType() == typeof(Label))
@@ -100,15 +109,19 @@ namespace TipCalculator
         /// Determines the Tip Rate based on the Minimun Tip and Maximum Tip textbox values and the Quality of Service slider value.
         /// </summary>
         /// <returns>Tip Rate</returns>
-        public string CalculateTipRate()
+        public decimal CalculateTipRate()
         {
             minTipRate = Decimal.Parse(minTipTextBox.Text);
             maxTipRate = Decimal.Parse(maxTipTextBox.Text);
             serviceRate = Decimal.Parse(qualityTrackBar.Value.ToString());
 
-            return (((maxTipRate - minTipRate) * (serviceRate / 10)) + minTipRate).ToString();
+            return (((maxTipRate - minTipRate) * (serviceRate / 10)) + minTipRate);
         }
 
+        /// <summary>
+        /// Calculates the evenly divided per person tip
+        /// </summary>
+        /// <returns></returns>
         public decimal CalculatePerPersonTip()
         {
             totalTip = CalculateTotalTip();
@@ -121,6 +134,10 @@ namespace TipCalculator
             return (Decimal.Parse(totalTipLabel.Text) / CalculateSubTotalForTip()) * 100;
         }
 
+        /// <summary>
+        /// Calculates subtotal for bill total calculation
+        /// </summary>
+        /// <returns>subtotal</returns>
         private decimal CalculateSubTotalForBill()
         {
             billTotal = Decimal.Parse(billTotalTextBox.Text);
