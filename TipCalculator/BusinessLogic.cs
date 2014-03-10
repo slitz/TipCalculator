@@ -131,7 +131,14 @@ namespace TipCalculator
 
         public decimal CalculateTailoredTipRate()
         {
-            return (Decimal.Parse(totalTipLabel.Text) / CalculateSubTotalForTip()) * 100;
+            if (decimal.Parse(totalTipLabel.Text) != 0)
+            {
+                return (Decimal.Parse(totalTipLabel.Text) / CalculateSubTotalForTip()) * 100;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         /// <summary>
